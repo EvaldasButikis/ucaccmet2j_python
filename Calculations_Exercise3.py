@@ -1,4 +1,18 @@
 import json
+import csv
+
+# opens the stations csv file for reading
+csvfile = open("stations.csv")
+
+# creates a new v
+locations = csv.DictReader(csvfile)
+
+station_codes = []
+
+#for row in locations:
+#    station_codes.append(row["Station"])
+
+#print(station_codes)
 
 # Loads the .json contents into a variable
 with open("precipitation.json") as file:
@@ -25,6 +39,8 @@ total_yearly_precipitation=0
 
 # For loop to filter specifically the Seattle station observations into the empty list from before
 for stations in measurements:
+    for row in locations:
+        station_code = row("Station")
     if stations["station"] == "GHCND:US1WAKG0038":
         total_yearly_precipitation += stations["value"]
         for date in all_dates:
